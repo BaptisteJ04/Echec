@@ -1,6 +1,8 @@
-package in360.tp1;
+package projet.all_pieces;
 
 import java.util.*;
+
+import projet.models.ChessBoard;
 
 public class PiecePersonnalisee extends Piece {
     
@@ -29,7 +31,7 @@ public class PiecePersonnalisee extends Piece {
     }
 
     @Override
-    protected boolean isValidDeplacement(int[] end, ChessBoard board) {
+    public boolean isValidDeplacement(int[] end, ChessBoard board) {
         for (int[] move : getPossibleMoves(board)) {
             if (move[0] == end[0] && move[1] == end[1]) {
                 return true;
@@ -39,7 +41,7 @@ public class PiecePersonnalisee extends Piece {
     }
 
     @Override
-    protected boolean isValidCatch(int[] end, ChessBoard board) {
+    public boolean isValidCatch(int[] end, ChessBoard board) {
         for (int[] capture : getPossibleCaptures(board)) {
             if (capture[0] == end[0] && capture[1] == end[1]) {
                 return true;
@@ -49,7 +51,7 @@ public class PiecePersonnalisee extends Piece {
     }
 
     @Override
-    protected List<int[]> getPossibleMoves(ChessBoard board) {
+	public List<int[]> getPossibleMoves(ChessBoard board) {
         List<int[]> moves = new ArrayList<>();
         int x = getX();
         int y = getY();
@@ -86,7 +88,7 @@ public class PiecePersonnalisee extends Piece {
     }
 
     @Override
-    protected List<int[]> getPossibleCaptures(ChessBoard board) {
+	public List<int[]> getPossibleCaptures(ChessBoard board) {
         List<int[]> captures = new ArrayList<>();
         int x = getX();
         int y = getY();

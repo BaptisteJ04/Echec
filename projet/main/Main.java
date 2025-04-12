@@ -1,4 +1,4 @@
-package in360.tp1;
+package projet.main;
 
 public class Main {
 

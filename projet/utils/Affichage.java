@@ -1,6 +1,10 @@
-package in360.tp1;
+package projet.utils;
 
 import java.util.Scanner;
+
+import projet.all_pieces.Piece;
+import projet.all_pieces.Pion;
+import projet.models.ChessBoard;
 
 public class Affichage {
 	

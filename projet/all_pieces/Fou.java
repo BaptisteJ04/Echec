@@ -1,14 +1,16 @@
-package in360.tp1;
+package projet.all_pieces;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tour extends Piece {
+import projet.models.ChessBoard;
 
-    private final int[] affichage = {0x265C,0x2656};
+public class Fou extends Piece {
+    
+    private final int[] affichage = {0x265D,0x2657}; 
 
-    public Tour(int x, int y, int player) {
-        super(x, y, player, player == 0 ? "./src/Images/white_rook.png" : "./src/Images/black_rook.png");
+    public Fou(int x, int y, int player) {
+        super(x, y, player, player == 0 ? "./src/Images/white_bishop.png" : "./src/Images/black_bishop.png");
     }
 
     @Override
@@ -18,7 +20,7 @@ public class Tour extends Piece {
     }
 
     @Override
-    protected boolean isValidDeplacement(int[] end, ChessBoard board) {
+	public boolean isValidDeplacement(int[] end, ChessBoard board) {
         for (int[] move : getPossibleMoves(board)) {
             if (move[0] == end[0] && move[1] == end[1]) {
                 return true;
@@ -28,7 +30,7 @@ public class Tour extends Piece {
     }
 
     @Override
-    protected boolean isValidCatch(int[] end, ChessBoard board) {
+	public boolean isValidCatch(int[] end, ChessBoard board) {
         for (int[] cap : getPossibleCaptures(board)) {
             if (cap[0] == end[0] && cap[1] == end[1]) {
                 return true;
@@ -42,22 +44,20 @@ public class Tour extends Piece {
         int x = this.getX();
         int y = this.getY();
 
-        int[][] directions = {
-            {1, 0}, {-1, 0}, {0, 1}, {0, -1} // horizontal et vertical
-        };
+        // 4 directions diagonales : haut/droite, haut/gauche, bas/droite, bas/gauche
+        int[][] directions = { {1, 1}, {-1, 1}, {1, -1}, {-1, -1} };
 
         for (int[] dir : directions) {
             int dx = dir[0], dy = dir[1];
             int nx = x + dx, ny = y + dy;
 
-            while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) { //On vérifie qu'on ne sort pas de l'échequier
-                Piece p = board.getPieceAt(nx, ny);
-                if (p == null) {
+            while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) { //On se déplace en restant dans l'échequier
+                if (board.getPieceAt(nx, ny) == null) { //Si il n'y a personne, j'avance
                     moves.add(new int[]{nx, ny});
                 } else {
-                    break;
+                    break; // sinon obstacle rencontré
                 }
-                nx += dx;
+                nx += dx; //J'avance dans la diagonale
                 ny += dy;
             }
         }
@@ -70,21 +70,19 @@ public class Tour extends Piece {
         int x = this.getX();
         int y = this.getY();
 
-        int[][] directions = {
-            {1, 0}, {-1, 0}, {0, 1}, {0, -1}
-        };
+        int[][] directions = { {1, 1}, {-1, 1}, {1, -1}, {-1, -1} };
 
         for (int[] dir : directions) {
             int dx = dir[0], dy = dir[1];
             int nx = x + dx, ny = y + dy;
 
-            while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) {  //On vérifie qu'on ne sort pas de l'échequier
+            while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) {
                 Piece p = board.getPieceAt(nx, ny);
                 if (p != null) {
                     if (p.getPlayer() != this.getPlayer()) {
                         captures.add(new int[]{nx, ny});
                     }
-                    break;
+                    break; // Stoppe après avoir trouvé une pièce
                 }
                 nx += dx;
                 ny += dy;

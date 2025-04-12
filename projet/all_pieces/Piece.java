@@ -1,6 +1,8 @@
-package in360.tp1;
+package projet.all_pieces;
 
 import java.util.List;
+
+import projet.models.ChessBoard;
 
 public abstract class Piece {
     private int x;
@@ -30,10 +32,10 @@ public abstract class Piece {
     
 
     public abstract void deplacement(int[] end);
-    protected abstract boolean isValidDeplacement(int[] end, ChessBoard Echec);
-    protected abstract boolean isValidCatch(int[] end, ChessBoard Echec);
-    protected abstract List<int[]> getPossibleMoves(ChessBoard board);
-    protected abstract List<int[]> getPossibleCaptures(ChessBoard board);
+    public abstract boolean isValidDeplacement(int[] end, ChessBoard Echec);
+    public abstract boolean isValidCatch(int[] end, ChessBoard Echec);
+    public abstract List<int[]> getPossibleMoves(ChessBoard board);
+    public abstract List<int[]> getPossibleCaptures(ChessBoard board);
     public abstract int getAffichage();
 
     public int[] parseCoordonnees(String coordonnees) { 

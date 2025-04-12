@@ -1,6 +1,11 @@
-package in360.tp1;
+package projet.utils;
 
 import javax.swing.*;
+
+import projet.all_pieces.Piece;
+import projet.all_pieces.Pion;
+import projet.models.ChessBoard;
+
 import java.awt.*;
 import java.util.List;
 

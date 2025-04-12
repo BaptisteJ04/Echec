@@ -1,4 +1,4 @@
-package in360.tp1;
+package projet.models;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,6 +7,10 @@ import java.util.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import projet.all_pieces.Piece;
+import projet.all_pieces.PiecePersonnalisee;
+import projet.all_pieces.Roi;
 
 public class JSONReader {
 

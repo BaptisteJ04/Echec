@@ -1,7 +1,9 @@
-package in360.tp1;
+package projet.all_pieces;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import projet.models.ChessBoard;
 
 public class Cavalier extends Piece {
 
@@ -18,7 +20,7 @@ public class Cavalier extends Piece {
     }
 
     @Override
-    protected boolean isValidDeplacement(int[] end, ChessBoard board) {
+	public boolean isValidDeplacement(int[] end, ChessBoard board) {
         for (int[] move : getPossibleMoves(board)) {
             if (move[0] == end[0] && move[1] == end[1]) return true;
         }
@@ -26,7 +28,7 @@ public class Cavalier extends Piece {
     }
 
     @Override
-    protected boolean isValidCatch(int[] end, ChessBoard board) {
+	public boolean isValidCatch(int[] end, ChessBoard board) {
         for (int[] capture : getPossibleCaptures(board)) {
             if (capture[0] == end[0] && capture[1] == end[1]) return true;
         }

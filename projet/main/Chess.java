@@ -1,8 +1,12 @@
-package in360.tp1;
+package projet.main;
 
 import java.util.Scanner;
 
 import javax.swing.SwingUtilities;
+
+import projet.models.ChessBoard;
+import projet.utils.Affichage;
+import projet.utils.ChessGUI;
 
 public class Chess {
 	

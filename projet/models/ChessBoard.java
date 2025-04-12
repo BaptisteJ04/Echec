@@ -1,8 +1,17 @@
-package in360.tp1;
+package projet.models;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import projet.all_pieces.Cavalier;
+import projet.all_pieces.Dame;
+import projet.all_pieces.Fou;
+import projet.all_pieces.Piece;
+import projet.all_pieces.PiecePersonnalisee;
+import projet.all_pieces.Pion;
+import projet.all_pieces.Roi;
+import projet.all_pieces.Tour;
 
 
 public class ChessBoard {
