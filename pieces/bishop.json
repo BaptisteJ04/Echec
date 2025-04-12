@@ -2,8 +2,8 @@
     "name": "Fou",
     "unicodeWhite": "♝",
     "unicodeBlack": "♗",
-    "imageWhite": "path/to/white_bishop.png",
-    "imageBlack": "path/to/black_bishop.png",
+    "imageWhite": "./src/Images/white_bishop.png",
+    "imageBlack": "./src/Images/black_bishop.png",
     "movesWhite": [
         [1, 1],
         [-1, -1],

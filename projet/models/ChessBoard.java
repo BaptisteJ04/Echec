@@ -26,7 +26,7 @@ public class ChessBoard {
         return (char) ('A' + x - 1) + Integer.toString(y);
     }
     
-    private void initializeBoard() {
+    public void initializeBoard() {
         // Pions
         for (int i = 1; i <= 8; i++) {
             board.put(convertToPosition(i, 2), new Pion(i, 2, 0)); //Blanc
@@ -76,7 +76,7 @@ public class ChessBoard {
             return -1;
         }
 
-        int[] end = piece.parseCoordonnees(to);
+        int[] end = Piece.parseCoordonnees(to);
 
         boolean capturePossible = piece.isValidCatch(end, this);
         boolean deplacementPossible = piece.isValidDeplacement(end, this);
@@ -148,7 +148,7 @@ public class ChessBoard {
         String kingPosition = findKingPosition(player);
                 
         for (Piece piece : board.values()) {	//On vérifie si une des pièce ennemie du plateau peux prendre le roi
-            if (piece.getPlayer() != player && piece.isValidCatch(piece.parseCoordonnees(kingPosition), this)) {
+            if (piece.getPlayer() != player && piece.isValidCatch(Piece.parseCoordonnees(kingPosition), this)) {
                     return true;
             }
         }

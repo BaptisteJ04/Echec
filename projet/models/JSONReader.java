@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import projet.all_pieces.Piece;
 import projet.all_pieces.PiecePersonnalisee;
-import projet.all_pieces.Roi;
 
 public class JSONReader {
 
@@ -38,8 +37,7 @@ public class JSONReader {
             boolean peutSauter = obj.getBoolean("peutSauter");
 
             // Convertir position type "E2" → coordonnées internes
-            Piece temp = new Roi(1, 1, 0); // Utilise la méthode parseCoordonnees héritée
-            int[] coords = temp.parseCoordonnees(position);
+            int[] coords = Piece.parseCoordonnees(position);
 
             // Créer la pièce personnalisée
             Piece piece = new PiecePersonnalisee(coords[0], coords[1], player, imagePath, moves, captures,new int[] {unicodeW.codePointAt(0), unicodeB.codePointAt(0)}, name, peutSauter, deplacementLong);

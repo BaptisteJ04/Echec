@@ -109,8 +109,12 @@ public class PiecePersonnalisee extends Piece {
                         if (pieceSurChemin != null && pieceSurChemin.getPlayer() != getPlayer()) {
                             captures.add(new int[]{nx, ny});
                         }
-                    } else {
-                        break; // On s'arrête si la pièce rencontre une pièce qu'elle ne peut pas sauter
+                    } else if(pieceSurChemin.getPlayer() != getPlayer()){
+                    	captures.add(new int[]{nx, ny}); 
+                    	break;
+                    }
+                    else {
+                    	break;
                     }
 
                     // Avancer sur la case suivante

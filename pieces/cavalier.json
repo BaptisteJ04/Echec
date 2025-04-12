@@ -2,8 +2,8 @@
     "name": "Cavalier",
     "unicodeWhite": "♞",
     "unicodeBlack": "♘",
-    "imageWhite": "path/to/white_knight.png",
-    "imageBlack": "path/to/black_knight.png",
+    "imageWhite": "./src/Images/white_knight.png",
+    "imageBlack": "./src/Images/black_knight.png",
     "movesWhite": [
         [2, 1],
         [1, 2],

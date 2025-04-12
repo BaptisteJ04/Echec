@@ -2,8 +2,8 @@
     "name": "Tour",
     "unicodeWhite": "♜",
     "unicodeBlack": "♖",
-    "imageWhite": "path/to/white_rook.png",
-    "imageBlack": "path/to/black_rook.png",
+    "imageWhite": "./src/Images/white_rook.png",
+    "imageBlack": "./src/Images/black_rook.png",
     "movesWhite": [
         [1, 0],
         [-1, 0],

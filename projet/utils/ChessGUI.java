@@ -11,6 +11,9 @@ import java.util.List;
 
 public class ChessGUI extends JFrame {
     private static final long serialVersionUID = 1L;
+    private int scoreBlanc = 0;
+    private int scoreNoir = 0;
+    private JLabel scoreLabel;
 	private ChessBoard board;
     private JButton[][] buttons;
     private int currentPlayer = 0;
@@ -28,6 +31,13 @@ public class ChessGUI extends JFrame {
         setSize(1200,1200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        
+        // Score panel en haut
+        scoreLabel = new JLabel("Score - Blanc: 0 | Noir: 0", SwingConstants.CENTER);
+        scoreLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        scoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(scoreLabel, BorderLayout.NORTH);
+
 
         JPanel boardPanel = new JPanel(new GridLayout(8, 8));
 
@@ -48,6 +58,71 @@ public class ChessGUI extends JFrame {
         // Créer un panel pour le bouton de forfait
         JPanel controlPanel = new JPanel();
         JButton forfeitButton = new JButton("FF15");
+        JButton quitButton = new JButton("Quitter");
+        quitButton.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment quitter ?", "Quitter", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        });
+        controlPanel.add(quitButton);
+
+        
+        // Action à effectuer quand le joueur déclare forfait
+        forfeitButton.addActionListener(e -> handleForfeit());
+        controlPanel.add(forfeitButton);
+
+        add(boardPanel, BorderLayout.CENTER);
+        add(controlPanel, BorderLayout.SOUTH);  // Ajout panneau avec bouton ff
+        updateBoard();  // Mettre à jour l'affichage des pièces sur l'échiquier
+        setVisible(true);  // Afficher la fenêtre
+    }
+    
+    public ChessGUI(ChessBoard board) {
+        this.board = board;
+        buttons = new JButton[8][8];
+
+        // Initialiser la fenêtre
+        setTitle("Jeu d'Échecs");
+        setSize(1200,1200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        
+        // Score panel en haut
+        scoreLabel = new JLabel("Score - Blanc: 0 | Noir: 0", SwingConstants.CENTER);
+        scoreLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        scoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        add(scoreLabel, BorderLayout.NORTH);
+
+
+        JPanel boardPanel = new JPanel(new GridLayout(8, 8));
+
+        // Création des boutons de l'échiquier
+        for (int y = 8; y >= 1; y--) {
+            for (int x = 1; x <= 8; x++) {
+                JButton button = new JButton();
+                int finalX = x;
+                int finalY = y;
+
+                // Ajout un écouteur de clic
+                button.addActionListener(e -> handleClick(finalX, finalY));
+                buttons[8 - y][x - 1] = button;
+                boardPanel.add(button);
+            }
+        }
+
+        // Créer un panel pour le bouton de forfait
+        JPanel controlPanel = new JPanel();
+        JButton forfeitButton = new JButton("FF15");
+        JButton quitButton = new JButton("Quitter");
+        quitButton.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment quitter ?", "Quitter", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        });
+        controlPanel.add(quitButton);
+
         
         // Action à effectuer quand le joueur déclare forfait
         forfeitButton.addActionListener(e -> handleForfeit());
@@ -206,10 +281,30 @@ public class ChessGUI extends JFrame {
             }
         }
     }
+    
+    private void updateScoreLabel() {
+        scoreLabel.setText("Score - Blanc: " + scoreBlanc + " | Noir: " + scoreNoir);
+    }
+
 
     private void handleForfeit() {
+        if (currentPlayer == 0) {
+            scoreNoir++;
+        } else {
+            scoreBlanc++;
+        }
+
+        updateScoreLabel();
+
         String winner = currentPlayer == 0 ? "Noir" : "Blanc";
         JOptionPane.showMessageDialog(this, "Le joueur " + winner + " a gagné par forfait !");
-        System.exit(0);  // Fermer l'application
+        
+        // Reset du plateau après forfait 
+        board = new ChessBoard();
+        board.initializeBoard();
+        selected = null;
+        currentPlayer = 0;
+        updateBoard();
     }
+
 }

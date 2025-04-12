@@ -2,8 +2,8 @@
     "name": "Dame",
     "unicodeWhite": "♛",
     "unicodeBlack": "♕",
-    "imageWhite": "path/to/white_queen.png",
-    "imageBlack": "path/to/black_queen.png",
+    "imageWhite": "./src/Images/white_queen.png",
+    "imageBlack": "./src/Images/black_queen.png",
     "movesWhite": [
         [1, 0],
         [-1, 0],

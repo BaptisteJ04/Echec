@@ -38,7 +38,7 @@ public abstract class Piece {
     public abstract List<int[]> getPossibleCaptures(ChessBoard board);
     public abstract int getAffichage();
 
-    public int[] parseCoordonnees(String coordonnees) { 
+    public static int[] parseCoordonnees(String coordonnees) { 
         if (coordonnees == null || coordonnees.length() != 2) {
             throw new IllegalArgumentException("Coordonnées invalides : " + coordonnees);
         }

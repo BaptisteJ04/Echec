@@ -1,11 +1,13 @@
 package projet.main;
 
+import java.util.Scanner;
+
+import projet.utils.Accueil;
+
 public class Main {
 
 	public static void main(String[] args) {
-		Chess a = new Chess();
-		a.gameGUI();
-		//a.game();
+		Scanner scanner = new Scanner(System.in);
+		Accueil.afficherMenuGUI(scanner);
 	}
-
 }
