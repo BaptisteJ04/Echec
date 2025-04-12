@@ -93,6 +93,13 @@ Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 
 ---
 
+## 🎮 Aperçu du jeu
+
+Voici un aperçu du mode graphique (GUI) avec les pièces affichées sur l’échiquier :
+
+![Aperçu du jeu d'échecs](./echec_perso.png)
+
+
 ## 🌈 Idées de pièces personnalisées
 
     🐉 Un dragon qui vole sur les cases horizontales et verticales
