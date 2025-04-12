@@ -1,0 +1,17 @@
+{
+    "name": "Assassin",
+    "unicodeWhite": "⚔️",
+    "unicodeBlack": "🗡️",
+    "imageWhite": "./src/Images/white_assassin.png",
+    "imageBlack": "./src/Images/black_assassin.png",
+    "movesWhite": [],
+    "movesBlack": [],
+    "capturesWhite": [
+        [2, 2], [2, -2], [-2, 2], [-2, -2]
+    ],
+    "capturesBlack": [
+        [2, 2], [2, -2], [-2, 2], [-2, -2]
+    ],
+    "deplacementLong": false,
+    "peutSauter": true
+}

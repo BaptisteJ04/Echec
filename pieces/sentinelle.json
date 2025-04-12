@@ -1,0 +1,17 @@
+{
+    "name": "Sentinelle",
+    "unicodeWhite": "🛡️",
+    "unicodeBlack": "🛡️",
+    "imageWhite": "./src/Images/white_guard.png",
+    "imageBlack": "./src/Images/black_guard.png",
+    "movesWhite": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "movesBlack": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "capturesWhite": [],
+    "capturesBlack": [],
+    "deplacementLong": false,
+    "peutSauter": false
+}

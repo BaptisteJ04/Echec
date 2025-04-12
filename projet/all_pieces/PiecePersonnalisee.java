@@ -58,6 +58,7 @@ public class PiecePersonnalisee extends Piece {
 
         // Parcours des déplacements possibles
         for (int[] move : deplacementsPossibles) {
+        	if(move == null)break;
         	int dx = move[0], dy = move[1];
             int nx = x + dx, ny = y + dy;
             
@@ -73,6 +74,7 @@ public class PiecePersonnalisee extends Piece {
                 if(!peutSauter && obstacle!= null){	//Un obstacle mais on ne peut pas sauter, donc on est bloqué
                     break; 
                 }
+                
 
                 // Avancer sur la case suivante
                 nx += dx;
@@ -92,9 +94,11 @@ public class PiecePersonnalisee extends Piece {
         List<int[]> captures = new ArrayList<>();
         int x = getX();
         int y = getY();
+        int alreadyCatched = 0;
 
         // Parcours des directions de capture
         for (int[] capture : capturesPossibles) {
+        	alreadyCatched = 0;
             int nx = x + capture[0];
             int ny = y + capture[1];
 
@@ -106,10 +110,12 @@ public class PiecePersonnalisee extends Piece {
                     // Si la pièce peut sauter ou la case est vide
                     if (peutSauter || pieceSurChemin == null) {
                         // Si une pièce adverse est présente, on peut la capturer
-                        if (pieceSurChemin != null && pieceSurChemin.getPlayer() != getPlayer()) {
+                        if (pieceSurChemin != null && pieceSurChemin.getPlayer() != getPlayer() && alreadyCatched == 0) {
+                        	alreadyCatched++;
                             captures.add(new int[]{nx, ny});
                         }
-                    } else if(pieceSurChemin.getPlayer() != getPlayer()){
+                    } else if(pieceSurChemin.getPlayer() != getPlayer() ){
+                    	alreadyCatched++;
                     	captures.add(new int[]{nx, ny}); 
                     	break;
                     }
