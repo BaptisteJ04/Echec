@@ -1,0 +1,49 @@
+{
+    "name": "Dame",
+    "unicodeWhite": "♛",
+    "unicodeBlack": "♕",
+    "imageWhite": "path/to/white_queen.png",
+    "imageBlack": "path/to/black_queen.png",
+    "movesWhite": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+        [-1, -1],
+        [1, -1],
+        [-1, 1]
+    ],
+    "movesBlack": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+        [-1, -1],
+        [1, -1],
+        [-1, 1]
+    ],
+    "capturesWhite": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+        [-1, -1],
+        [1, -1],
+        [-1, 1]
+    ],
+    "capturesBlack": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+        [-1, -1],
+        [1, -1],
+        [-1, 1]
+    ],
+    "deplacementLong": true,
+    "peutSauter": false
+}

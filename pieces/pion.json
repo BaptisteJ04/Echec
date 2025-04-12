@@ -1,0 +1,23 @@
+{
+    "name": "Pion",
+    "unicodeWhite": "♟",
+    "unicodeBlack": "♙",
+    "imageWhite": "path/to/white_pawn.png",
+    "imageBlack": "path/to/black_pawn.png",
+    "movesWhite": [
+        [0, 1]
+    ],
+    "movesBlack": [
+        [0, -1]
+    ],
+    "capturesWhite": [
+        [1, 1],
+        [-1, 1]
+    ],
+    "capturesBlack": [
+        [1, -1],
+        [-1, -1]
+    ],
+    "deplacementLong": false,
+    "peutSauter": false
+}

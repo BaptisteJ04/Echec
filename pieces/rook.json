@@ -1,0 +1,33 @@
+{
+    "name": "Tour",
+    "unicodeWhite": "♜",
+    "unicodeBlack": "♖",
+    "imageWhite": "path/to/white_rook.png",
+    "imageBlack": "path/to/black_rook.png",
+    "movesWhite": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1]
+    ],
+    "movesBlack": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1]
+    ],
+    "capturesWhite": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1]
+    ],
+    "capturesBlack": [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1]
+    ],
+    "deplacementLong": true,
+    "peutSauter": false
+}
