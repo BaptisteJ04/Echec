@@ -96,25 +96,25 @@ public class PiecePersonnalisee extends Piece {
         int y = getY();
         int alreadyCatched = 0;
 
-        // Parcours des directions de capture
+        // Parcours les directions de capture
         for (int[] capture : capturesPossibles) {
         	alreadyCatched = 0;
             int nx = x + capture[0];
             int ny = y + capture[1];
 
-            // Si la pièce peut se déplacer longuement, on va tester toutes les cases 
+            // Si la pièce peut se déplacer de plus d'une case, on va tester toutes les cases 
             if (deplacementLong) {
                 while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) {
                     Piece pieceSurChemin = board.getPieceAt(nx, ny);
                     
                     // Si la pièce peut sauter ou la case est vide
                     if (peutSauter || pieceSurChemin == null) {
-                        // Si une pièce adverse est présente, on peut la capturer
+                        // Si une pièce adverse est présente, et qu'on n'a pas de pièces entre nous, on peut la capturer
                         if (pieceSurChemin != null && pieceSurChemin.getPlayer() != getPlayer() && alreadyCatched == 0) {
-                        	alreadyCatched++;
+                        	alreadyCatched++; //Permet qu'on ne puisse pas capturer toutes les pièces d'une seule ligne
                             captures.add(new int[]{nx, ny});
                         }
-                    } else if(pieceSurChemin.getPlayer() != getPlayer() ){
+                    } else if(pieceSurChemin.getPlayer() != getPlayer() ){ //Si on rencontre une pièce adverse mais qu'on ne peux pas sauter
                     	alreadyCatched++;
                     	captures.add(new int[]{nx, ny}); 
                     	break;
@@ -128,7 +128,7 @@ public class PiecePersonnalisee extends Piece {
                     ny += capture[1];
                 }
             } 
-            // Si la pièce ne fait pas de déplacement long
+            // Si la pièce ne fait pas de déplacement long (plus d'une case)
             else {
                 if (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) {
                     Piece cible = board.getPieceAt(nx, ny);
@@ -141,14 +141,33 @@ public class PiecePersonnalisee extends Piece {
 
         return captures;
     }
+	
+	@Override
+	public String toString() {
+	    return String.format(
+	        "PiecePersonnalisee{name='%s', position=(%d,%d), player=%d, peutSauter=%b, deplacementLong=%b, unicode='%s'}",
+	        name,
+	        getX(),
+	        getY(),
+	        getPlayer(),
+	        peutSauter,
+	        deplacementLong,
+	        new String(Character.toChars(getAffichage()))
+	    );
+	}
+
 
     @Override
     public int getAffichage() {
         return affichage[getPlayer()];
     }
 
-    @Override
-    public String toString() {
-        return new String(Character.toChars(getAffichage()));
-    }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

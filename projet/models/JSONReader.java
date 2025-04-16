@@ -15,10 +15,10 @@ public class JSONReader {
 
     public static void chargerPiecePersonnalisee(String position, int player, String cheminFichier, ChessBoard board) {
         try {
-            // Lire le contenu du fichier JSON
+            // Lire le JSON
             String contenu = new String(Files.readAllBytes(Paths.get(cheminFichier)));
 
-            // Créer l'objet JSON
+            // Créer l'objet JSON de la classe JSONOject
             JSONObject obj = new JSONObject(contenu);
 
             String name = obj.getString("name");
@@ -27,23 +27,28 @@ public class JSONReader {
 
             // Récupérer les chemins des images en fonction du joueur
             String imagePath = player == 0 ? obj.getString("imageWhite") : obj.getString("imageBlack");
-
-            // Parsing des déplacements et captures en fonction du joueur
-            List<int[]> moves = player == 0 ? jsonArrayToList(obj.getJSONArray("movesWhite")) : jsonArrayToList(obj.getJSONArray("movesBlack"));
-            List<int[]> captures = player == 0 ? jsonArrayToList(obj.getJSONArray("capturesWhite")) : jsonArrayToList(obj.getJSONArray("capturesBlack"));
-
-            // Récupérer les nouveaux champs de déplacement
+            List<int[]> moves;
+            List<int[]> captures;
+            // Parsing des déplacements et captures
+            if(player == 0) {
+            	moves = jsonArrayToList(obj.getJSONArray("movesWhite"));
+                captures = jsonArrayToList(obj.getJSONArray("capturesWhite"));
+            }else {
+            	moves = jsonArrayToList(obj.getJSONArray("movesBlack"));
+            	captures = jsonArrayToList(obj.getJSONArray("capturesBlack"));
+            }
+            
+            // Récupérer les champs de déplacement
             boolean deplacementLong = obj.getBoolean("deplacementLong");
             boolean peutSauter = obj.getBoolean("peutSauter");
 
-            // Convertir position type "E2" → coordonnées internes
+            // Convertir position donnée en parametre en int[]
             int[] coords = Piece.parseCoordonnees(position);
-
+            
             // Créer la pièce personnalisée
             Piece piece = new PiecePersonnalisee(coords[0], coords[1], player, imagePath, moves, captures,new int[] {unicodeW.codePointAt(0), unicodeB.codePointAt(0)}, name, peutSauter, deplacementLong);
-
-            // Ajouter la pièce au plateau
             board.addPiece(piece);
+            
 
             System.out.println("Pièce personnalisée ajoutée : " + name);
 

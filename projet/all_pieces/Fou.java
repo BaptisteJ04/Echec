@@ -7,7 +7,7 @@ import projet.models.ChessBoard;
 
 public class Fou extends Piece {
     
-    private final int[] affichage = {0x265D,0x2657}; 
+    private final int[] affichage = {0x2657,0x265D}; 
 
     public Fou(int x, int y, int player) {
         super(x, y, player, player == 0 ? "./src/Images/white_bishop.png" : "./src/Images/black_bishop.png");

@@ -7,7 +7,7 @@ import projet.models.ChessBoard;
 
 public class Roi extends Piece {
 
-    private final int[] affichage = {0x265A,0x2654};
+    private final int[] affichage = {0x2654,0x265A};
 
     public Roi(int x, int y, int player) {
         super(x, y, player, player == 0 ? "./src/Images/white_king.png" : "./src/Images/balck_king.png");

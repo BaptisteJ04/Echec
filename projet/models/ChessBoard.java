@@ -21,6 +21,9 @@ public class ChessBoard {
         board = new HashMap<>();
         initializeBoard();
         }
+    public void emptyChessBoard() {
+    	board.clear();
+        }
     
     protected String convertToPosition(int x, int y) {
         return (char) ('A' + x - 1) + Integer.toString(y);

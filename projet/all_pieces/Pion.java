@@ -7,7 +7,7 @@ import projet.models.ChessBoard;
 
 public class Pion extends Piece {
 
-    private final int[] affichage = {0x265F,0x2659};
+    private final int[] affichage = {0x2659,0x265F};
 
     public Pion(int x, int y, int player) {
         super(x, y, player, player == 0 ? "./src/Images/white_pawn.png" : "./src/Images/black_pawn.png");

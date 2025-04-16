@@ -20,7 +20,7 @@ public abstract class Piece {
 	}
 
 
-	public Piece(int x, int y, int player, String pathImage) {
+	public Piece(int x, int y, int player, String pathImage) throws IllegalArgumentException{
         if (!isValidPosition(x, y)) {
             throw new IllegalArgumentException("Position invalide sur l'échiquier");
         }
@@ -38,7 +38,7 @@ public abstract class Piece {
     public abstract List<int[]> getPossibleCaptures(ChessBoard board);
     public abstract int getAffichage();
 
-    public static int[] parseCoordonnees(String coordonnees) { 
+    public static int[] parseCoordonnees(String coordonnees) throws IllegalArgumentException{ 
         if (coordonnees == null || coordonnees.length() != 2) {
             throw new IllegalArgumentException("Coordonnées invalides : " + coordonnees);
         }
@@ -72,7 +72,7 @@ public abstract class Piece {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(int x) throws IllegalArgumentException{
         if (!isValidPosition(x, this.y)) {
             throw new IllegalArgumentException("Nouvelle position invalide : " + x + ", " + this.y);
         }
@@ -83,7 +83,7 @@ public abstract class Piece {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(int y) throws IllegalArgumentException{
         if (!isValidPosition(this.x, y)) {
             throw new IllegalArgumentException("Nouvelle position invalide : " + this.x + ", " + y);
         }

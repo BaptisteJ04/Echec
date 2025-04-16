@@ -7,7 +7,7 @@ import projet.models.ChessBoard;
 
 public class Tour extends Piece {
 
-    private final int[] affichage = {0x265C,0x2656};
+    private final int[] affichage = {0x2656,0x265C};
 
     public Tour(int x, int y, int player) {
         super(x, y, player, player == 0 ? "./src/Images/white_rook.png" : "./src/Images/black_rook.png");

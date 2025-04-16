@@ -7,7 +7,7 @@ import projet.models.ChessBoard;
 
 public class Cavalier extends Piece {
 
-    private final int[] affichage = {0x265E,0x2658};
+    private final int[] affichage = {0x2658,0x265E};
 
     public Cavalier(int x, int y, int player) {
         super(x, y, player, player == 0 ? "./src/Images/white_knight.png" : "./src/Images/black_knight.png");

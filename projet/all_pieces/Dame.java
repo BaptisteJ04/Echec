@@ -7,7 +7,7 @@ import projet.models.ChessBoard;
 
 public class Dame extends Piece {
 
-    private final int[] affichage = {0x265B,0x2655}; 
+    private final int[] affichage = {0x2655, 0x265B}; 
 
     public Dame(int x, int y, int player) {
         super(x, y, player, player == 0 ? "./src/Images/white_queen.png" : "./src/Images/black_queen.png");
