@@ -83,6 +83,10 @@ public class Cavalier extends Piece {
 
         return captures;
     }
+    
+    public Cavalier clone() {
+    	return new Cavalier(getX(),getY(), getPlayer());
+    }
 
     public int getAffichage() {
         return affichage[this.getPlayer()];

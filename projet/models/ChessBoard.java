@@ -4,14 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import projet.all_pieces.Cavalier;
-import projet.all_pieces.Dame;
-import projet.all_pieces.Fou;
-import projet.all_pieces.Piece;
-import projet.all_pieces.PiecePersonnalisee;
-import projet.all_pieces.Pion;
-import projet.all_pieces.Roi;
-import projet.all_pieces.Tour;
+import projet.all_pieces.*;
 
 
 public class ChessBoard {
@@ -112,10 +105,9 @@ public class ChessBoard {
                 board.put(to, capturedPiece);
             }
 
-            System.out.println("Ce coup vous met en échec. Déplacement annulé.");
+            //System.out.println("Ce coup vous met en échec. Déplacement annulé.");
             return -1;
         }
-
         // Promotion du pion ?
         if (isPawnPromotion(to)) {
             return 1; // Besoin de promotion
@@ -147,29 +139,36 @@ public class ChessBoard {
     }
     
     public boolean isKingInCheck(int player) {
-        // Trouve la position du roi du joueur
-        String kingPosition = findKingPosition(player);
-                
-        for (Piece piece : board.values()) {	//On vérifie si une des pièce ennemie du plateau peux prendre le roi
-            if (piece.getPlayer() != player && piece.isValidCatch(Piece.parseCoordonnees(kingPosition), this)) {
-                    return true;
+        // Trouve les coordonnées du roi du joueur
+        int[] kingPosition = findKingCoordinates(player);
+        
+        // Si aucune position n'a été trouvée pour le roi, retourne false (erreur dans l'état du jeu)
+        if (kingPosition == null) {
+            return false;
+        }
+
+        // Vérifie si une pièce ennemie peut capturer le roi
+        for (Piece piece : board.values()) {
+            if (piece.getPlayer() != player) {  // Pièce adverse
+                if (piece.isValidCatch(kingPosition, this)) {
+                    return true;  // Le roi est en échec
+                }
             }
         }
         
-        return false;
+        return false;  // Aucun ennemi ne menace le roi
     }
 
-
-    // Trouve la position du roi du joueur
-    private String findKingPosition(int player) {
-        for (Map.Entry<String, Piece> entry : board.entrySet()) {  //On cherche dans toute les pièce encore sur l'échequier
+    private int[] findKingCoordinates(int player) {
+        for (Map.Entry<String, Piece> entry : board.entrySet()) {
             Piece piece = entry.getValue();
             if (piece instanceof Roi && piece.getPlayer() == player) {
-                return entry.getKey(); // Retourne la position du roi
+                return new int[]{piece.getX(), piece.getY()};  // Retourne les coordonnées du roi sous forme de tableau d'entiers
             }
         }
-        return null; // Il ne devrait normalement pas, ne pas y avoir de roi sur le plateau
+        return null;  // Ne devrait jamais arriver si le roi existe
     }
+
     
     public void loadCustomPieces(List<PiecePersonnalisee> customPieces) {
         for (PiecePersonnalisee customPiece : customPieces) {

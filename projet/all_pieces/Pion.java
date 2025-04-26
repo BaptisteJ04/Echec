@@ -107,6 +107,10 @@ public class Pion extends Piece {
         }
         return newPiece;
     }
+    
+    public Pion clone() {
+    	return new Pion(getX(),getY(), getPlayer());
+    }
 
     public int getAffichage() {
         return affichage[this.getPlayer()];

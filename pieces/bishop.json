@@ -1,7 +1,7 @@
 {
     "name": "Fou",
-    "unicodeWhite": "♝",
-    "unicodeBlack": "♗",
+    "unicodeWhite": "♗",
+    "unicodeBlack": "♝",
     "imageWhite": "./src/Images/white_bishop.png",
     "imageBlack": "./src/Images/black_bishop.png",
     "movesWhite": [

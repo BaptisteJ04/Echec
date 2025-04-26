@@ -81,6 +81,10 @@ public class Roi extends Piece {
 
         return captures;
     }
+    
+    public Roi clone() {
+    	return new Roi(getX(),getY(), getPlayer());
+    }
 
     public int getAffichage() {
         return affichage[this.getPlayer()];

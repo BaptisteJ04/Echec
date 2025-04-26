@@ -1,7 +1,7 @@
 {
     "name": "Dame",
-    "unicodeWhite": "♛",
-    "unicodeBlack": "♕",
+    "unicodeWhite": "♕",
+    "unicodeBlack": "♛",
     "imageWhite": "./src/Images/white_queen.png",
     "imageBlack": "./src/Images/black_queen.png",
     "movesWhite": [

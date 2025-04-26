@@ -10,9 +10,9 @@ public class PiecePersonnalisee extends Piece {
     private List<int[]> capturesPossibles;      // Déplacements en cas de capture
     private int[] affichage; 
     private boolean peutSauter;               // Si la pièce peut sauter par-dessus d'autres pièces (ex : Cavalier)
-    private boolean deplacementLong;           // Si la pièce peut se déplacer de plus d'une case (ex : Dame, Tour, Fou)
-
-    String name;
+    private boolean deplacementLong;           // Si la pièce peut se déplacer de plus d'une case (ex : Dame)
+    
+    private String name;
 
     public PiecePersonnalisee(int x, int y, int player, String pathImage, List<int[]> moves, List<int[]> captures, int[] affichage, String name, boolean peutSauter, boolean deplacementLong) {
         super(x, y, player, pathImage);
@@ -166,6 +166,62 @@ public class PiecePersonnalisee extends Piece {
 	public String getName() {
 		return name;
 	}
+	
+	public List<int[]> getDeplacementsPossibles() {
+		return deplacementsPossibles;
+	}
+
+	public void setDeplacementsPossibles(List<int[]> deplacementsPossibles) {
+		this.deplacementsPossibles = deplacementsPossibles;
+	}
+
+	public List<int[]> getCapturesPossibles() {
+		return capturesPossibles;
+	}
+
+	public void setCapturesPossibles(List<int[]> capturesPossibles) {
+		this.capturesPossibles = capturesPossibles;
+	}
+
+	public boolean isPeutSauter() {
+		return peutSauter;
+	}
+
+	public void setPeutSauter(boolean peutSauter) {
+		this.peutSauter = peutSauter;
+	}
+
+	public boolean isDeplacementLong() {
+		return deplacementLong;
+	}
+
+	public void setDeplacementLong(boolean deplacementLong) {
+		this.deplacementLong = deplacementLong;
+	}
+
+	public void setAffichage(int[] affichage) {
+		this.affichage = affichage;
+	}
+	
+	public int[] getAffichage2() {
+		return affichage;
+	}
+
+	public PiecePersonnalisee clone() {
+	    return new PiecePersonnalisee(
+	        getX(),
+	        getY(),
+	        getPlayer(),
+	        getPathImage(),
+	        getDeplacementsPossibles(), //On ne copie pas les listes en profondeur car pas utile ici
+	        getCapturesPossibles(),
+	        getAffichage2(),
+	        getName(),
+	        isPeutSauter(),
+	        isDeplacementLong()
+	    );
+	}
+
 
 	public void setName(String name) {
 		this.name = name;

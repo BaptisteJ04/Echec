@@ -91,6 +91,10 @@ public class Fou extends Piece {
 
         return captures;
     }
+    
+    public Fou clone() {
+    	return new Fou(getX(),getY(), getPlayer());
+    }
 
     public int getAffichage() {
         return affichage[this.getPlayer()];

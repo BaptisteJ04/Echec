@@ -37,6 +37,7 @@ public abstract class Piece {
     public abstract List<int[]> getPossibleMoves(ChessBoard board);
     public abstract List<int[]> getPossibleCaptures(ChessBoard board);
     public abstract int getAffichage();
+    public abstract Piece clone();
 
     public static int[] parseCoordonnees(String coordonnees) throws IllegalArgumentException{ 
         if (coordonnees == null || coordonnees.length() != 2) {

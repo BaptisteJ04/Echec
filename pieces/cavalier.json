@@ -1,7 +1,7 @@
 {
     "name": "Cavalier",
-    "unicodeWhite": "♞",
-    "unicodeBlack": "♘",
+    "unicodeWhite": "♘",
+    "unicodeBlack": "♞",
     "imageWhite": "./src/Images/white_knight.png",
     "imageBlack": "./src/Images/black_knight.png",
     "movesWhite": [

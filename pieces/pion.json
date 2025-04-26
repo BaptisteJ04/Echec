@@ -1,7 +1,7 @@
 {
     "name": "Pion",
-    "unicodeWhite": "♟",
-    "unicodeBlack": "♙",
+    "unicodeWhite": "♙",
+    "unicodeBlack": "♟",
     "imageWhite": "./src/Images/white_pawn.png",
     "imageBlack": "./src/Images/black_pawn.png",
     "movesWhite": [

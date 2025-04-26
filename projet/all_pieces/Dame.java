@@ -54,7 +54,7 @@ public class Dame extends Piece {
             int dx = dir[0], dy = dir[1];
             int nx = x + dx, ny = y + dy;
 
-            while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) { //On vérifie qu'on ne sort pas de l'échequier
+            while (nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) { //On vérifie qu'on ne sort pas de l'échequier ou qu'on ne prend pas un mur
                 if (board.getPieceAt(nx, ny) == null) {
                     moves.add(new int[]{nx, ny});
                 } else {
@@ -96,6 +96,10 @@ public class Dame extends Piece {
         }
 
         return captures;
+    }
+    
+    public Dame clone() {
+    	return new Dame(getX(),getY(), getPlayer());
     }
 
     public int getAffichage() {

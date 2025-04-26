@@ -95,6 +95,10 @@ public class Tour extends Piece {
 
         return captures;
     }
+    
+    public Tour clone() {
+    	return new Tour(getX(),getY(), getPlayer());
+    }
 
     public int getAffichage() {
         return affichage[this.getPlayer()];
