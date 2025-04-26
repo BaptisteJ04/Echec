@@ -11,12 +11,21 @@ Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
 
 ## 🧠 Fonctionnalités
 
-- ✅ Jeu d’échecs en **mode console** ou **mode graphique (Swing GUI)**
-- ♟️ Système de pièces **personnalisées** via des fichiers JSON
-- 👑 Pièces de base : Roi, Reine, Cavalier, Tour, Fou, Pion
-- 🎯 Prise en compte de la promotion, du tour par tour, des échecs
-- 🚨 Bouton de **forfait**, suivi du **score** en GUI
-- 🔁 Relancer une partie après un forfait en mode personnalisé GUI
+  - ✅ Jeu d’échecs en mode console ou mode graphique (Swing GUI)
+
+  -  ♟️ Système de pièces personnalisées via des fichiers JSON
+
+  - 👑 Pièces de base : Roi, Reine, Cavalier, Tour, Fou, Pion
+
+  -  🎯 Prise en compte de la promotion, du tour par tour, des échecs
+
+  - 🚨 Bouton de forfait, suivi du score en GUI
+  
+  -  🔁 Relancer une partie après un forfait en mode personnalisé GUI
+
+  - 🧠 Intelligence Artificielle basée sur MinMax pour jouer automatiquement
+
+  - 🧪 Tests unitaires complets avec JUnit pour assurer la stabilité du projet
 
 ---
 
@@ -26,22 +35,55 @@ Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
 - Java 8 ou plus
 - [org.json](https://mvnrepository.com/artifact/org.json/json) (pour lire les fichiers JSON)
 
-### 🛠️ Compilation manuelle
+### 📦 Compilation (en ligne de commande)
+
 ```bash
-javac -d bin src/projet/**/*.java
-java -cp bin projet.Main
+  javac -d bin -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar src/projet/**/*.java src/tests/**/*.java
 ```
+
+### 🚀 Exécuter le projet principal (Main.java)
+
+```bash
+  java -cp bin projet.main.Main
+```
+
+### 🧪 Exécuter les tests JUnit
+
+```bash
+  java -cp bin:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore tests.allPieces.YourTestClass
+```
+
+Ou pour tout lancer (en créant un AllTests.java qui agrège tous les tests) :
+
+```bash
+java -cp bin:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore tests.AllTests
+```
+
+### 📦 Pour packager en .jar
+
+  Depuis le répertoire principal :
+```bash
+  jar cfe monEchecs.jar projet.main.Main -C bin .
+```
+
+  Pour lancer ensuite :
+```bash
+  java -jar monEchecs.jar
+```
+
 ---
 
 ## 🎮 Choisissez votre mode :
 
-    Mode Classique terminal (pièces de base)
+  -  Mode Classique terminal (pièces de base)
 
-    Mode Personnalisé terminal (ajoutez vos pièces)
+  -  Mode Personnalisé terminal (ajoutez vos pièces)
 
-    Mode Classique GUI
+  -  Mode Classique GUI
 
-    Mode Personnalisé GUI
+  -  Mode Personnalisé GUI
+
+Tout les modes peuvent être joués en 1 ou 2 joueurs
 
 ---
 
@@ -58,8 +100,8 @@ Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 ```json
 {
   "name": "Dame",
-  "unicodeWhite": "♛",
-  "unicodeBlack": "♕",
+  "unicodeWhite": "♕",
+  "unicodeBlack": "♛",
   "imageWhite": "./src/Images/white_queen.png",
   "imageBlack": "./src/Images/black_queen.png",
   "movesWhite": [
@@ -83,7 +125,35 @@ Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 }
 ```
 
-🧪 Testez-la en choisissant le mode GUI personnalisé, entrez la position (ex: D2), puis tapez le nom du fichier (ex: Dame).
+## 🧪 Tests unitaires
+
+Le projet est couvert par des tests unitaires JUnit :
+
+  -  Validation des déplacements
+
+  - Détection des coups légaux en cas d’échec
+
+  - Vérification de l’évaluation des plateaux de jeu
+
+  - Préférence stratégique (par exemple : capturer une Dame plutôt qu'un Pion, éviter les échanges désavantageux, privilégier un mat)
+
+### Pour exécuter les tests :
+
+```bash
+javac -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar -d bin src/projet/**/*.java src/tests/**/*.java
+java -cp .:bin:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore projet.tests.AllTests
+```
+
+## 🤖 Intelligence Artificielle (IA)
+
+Une IA basée sur l'algorithme MinMax est intégrée :
+
+  - Choix du meilleur coup possible selon une évaluation heuristique du plateau
+
+  - Prise en compte des captures, échecs, mat et menaces
+
+Jouez contre l’ordinateur ou laissez l'IA s'affronter elle-même !
+
 
 ---
 
