@@ -109,7 +109,6 @@ public class MinMax {
             //On regarde tout les deplacements possible captures comprises pour toute les pièces de notre couleur)
             List<int[]> moves = piece.getPossibleMoves(board);
             moves.addAll(piece.getPossibleCaptures(board));
-            if(moves.isEmpty()) return null;  //Si on ne peux jouer aucun coup, on retourne null 
             for (int[] move : moves) {
                 String to = convertToPosition(move[0], move[1]);
                                 
@@ -125,7 +124,6 @@ public class MinMax {
                 }
             }
         }
-
         return meilleurCoup;
     }
 	
