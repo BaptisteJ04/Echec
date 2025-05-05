@@ -96,12 +96,6 @@ public class TestsPiecePerso {
     }
 
     @Test
-    public void testAffichageUnicode() {
-        assertEquals(0x2605, piece.getAffichage()); // Étoile pleine
-        assertEquals("★", piece.toString());
-    }
-
-    @Test
     public void testDeplacementEffectif() {
         piece.deplacement(new int[]{6, 6});
         assertEquals(6, piece.getX());

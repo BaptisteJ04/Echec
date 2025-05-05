@@ -11,7 +11,7 @@ import java.io.IOException;
 public class TestsJSONReader {
 
     private ChessBoard board;
-    private final String testFilePath = "./src/projet/tests/testsModels/test_custom_piece.json";
+    private final String testFilePath = "./src/tests/testsModels/test_custom_piece.json";
     private final String testFileNonConformePath = "./src/projet/tests/testsModels/jsonNonConforme.json";
 
     @BeforeEach
