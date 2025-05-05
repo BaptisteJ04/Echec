@@ -13,11 +13,6 @@ Classe principale pour gérer le déroulement d’une partie d’échecs (consol
 */
 public class Chess {
 
-	// Enum pour représenter les différents modes de jeu disponibles
-	public enum ModeJeu {
-		CLASSIQUE_VS_JOUEUR, CLASSIQUE_VS_IA, PERSONNALISE_VS_JOUEUR, PERSONNALISE_VS_IA
-	}
-
 	private final Scanner scanner = new Scanner(System.in);
 
 	/**
@@ -29,8 +24,9 @@ public class Chess {
 	}
 
 	/**
-	 * lancer(ModeJeu mode) Lance une partie selon le mode choisi : - Crée un
-	 * plateau personnalisé si besoin - Lance la boucle de jeu avec ou sans IA
+	 * lancer(ModeJeu mode) Lance une partie selon le mode choisi : 
+	 * - Crée un plateau personnalisé si besoin 
+	 * - Lance la boucle de jeu avec ou sans IA
 	 */
 	public void lancer(ModeJeu mode) {
 		ChessBoard board;
@@ -47,9 +43,10 @@ public class Chess {
 
 	/**
 	 * creerPlateauPersonnalise() Permet à chaque joueur d'ajouter des pièces
-	 * personnalisées via des fichiers JSON. - Le joueur entre les coordonnées et le
-	 * nom du fichier JSON - Validation de la zone de camp et de la présence d'un
-	 * roi - Retourne un plateau personnalisé prêt à jouer
+	 * personnalisées via des fichiers JSON. 
+	 * - Le joueur entre les coordonnées et le nom du fichier JSON
+	 * - Validation de la zone de camp et de la présence d'un roi
+	 * - Retourne un plateau personnalisé prêt à jouer
 	 */
 	private ChessBoard creerPlateauPersonnalise() {
 		ChessBoard board = new ChessBoard();
@@ -93,9 +90,10 @@ public class Chess {
 	}
 
 	/*
-	 * jouerPartie(ChessBoard board, boolean vsIA) Boucle principale du jeu : -
-	 * Affiche l’échiquier à chaque tour - Gère les entrées utilisateur ou les coups
-	 * de l’IA - Vérifie les coups valides, les promotions et les échecs
+	 * jouerPartie(ChessBoard board, boolean vsIA) Boucle principale du jeu : 
+	 * - Affiche l’échiquier à chaque tour 
+	 * - Gère les entrées utilisateur ou les coups de l’IA
+	 * - Vérifie les coups valides, les promotions et les échecs
 	 */
 	private void jouerPartie(ChessBoard board, boolean vsIA) {
 		Affichage affichage = new Affichage(board);

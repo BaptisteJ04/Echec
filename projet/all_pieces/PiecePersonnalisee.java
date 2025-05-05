@@ -4,93 +4,143 @@ import java.util.*;
 
 import projet.models.ChessBoard;
 
+/**
+ * Classe représentant une pièce d'échec personnalisée avec des déplacements et des captures spécifiques.
+ * Cette classe permet de définir des pièces avec des comportements non standards (par exemple,
+ * des pièces qui peuvent sauter par-dessus d'autres ou se déplacer sur plusieurs cases).
+ */
 public class PiecePersonnalisee extends Piece {
 
-	private List<int[]> deplacementsPossibles; // Déplacements sans capture
-	private List<int[]> capturesPossibles; // Déplacements en cas de capture
-	private int[] affichage;
-	private boolean peutSauter; // Si la pièce peut sauter par-dessus d'autres pièces (ex : Assassin)
-	private boolean deplacementLong; // Si la pièce peut se déplacer de plus d'une case (ex : Dame)
+    private List<int[]> deplacementsPossibles; // Liste des déplacements possibles sans capture
+    private List<int[]> capturesPossibles;    // Liste des captures possibles
+    private int[] affichage;                  // Code Unicode pour l'affichage de la pièce (en fonction du joueur)
+    private boolean peutSauter;               // Indique si la pièce peut sauter par-dessus d'autres pièces
+    private boolean deplacementLong;          // Indique si la pièce peut se déplacer sur plusieurs cases
+    private String name;                      // Nom de la pièce
 
-	private String name;
+    /**
+     * Constructeur de la pièce personnalisée.
+     *
+     * @param x                La position en x de la pièce
+     * @param y                La position en y de la pièce
+     * @param player           Le joueur auquel appartient la pièce (0 = blanc, 1 = noir)
+     * @param pathImage        Le chemin de l'image associée à la pièce
+     * @param moves            Liste des déplacements possibles pour la pièce
+     * @param captures         Liste des captures possibles pour la pièce
+     * @param affichage        Tableau contenant les codes Unicode pour chaque joueur
+     * @param name             Le nom de la pièce
+     * @param peutSauter       Indique si la pièce peut sauter par-dessus d'autres pièces
+     * @param deplacementLong  Indique si la pièce peut se déplacer sur plusieurs cases
+     */
+    public PiecePersonnalisee(int x, int y, int player, String pathImage, List<int[]> moves, List<int[]> captures,
+                              int[] affichage, String name, boolean peutSauter, boolean deplacementLong) {
+        super(x, y, player, pathImage);
+        this.deplacementsPossibles = moves;
+        this.capturesPossibles = captures;
+        this.affichage = affichage;
+        this.name = name;
+        this.peutSauter = peutSauter;
+        this.deplacementLong = deplacementLong;
+    }
 
-	public PiecePersonnalisee(int x, int y, int player, String pathImage, List<int[]> moves, List<int[]> captures,
-			int[] affichage, String name, boolean peutSauter, boolean deplacementLong) {
-		super(x, y, player, pathImage);
-		this.deplacementsPossibles = moves;
-		this.capturesPossibles = captures;
-		this.affichage = affichage;
-		this.name = name;
-		this.peutSauter = peutSauter;
-		this.deplacementLong = deplacementLong;
-	}
+    /**
+     * Déplace la pièce vers la nouvelle position donnée.
+     *
+     * @param end Le tableau contenant les coordonnées finales [x, y] pour le déplacement
+     */
+    @Override
+    public void deplacement(int[] end) {
+        setX(end[0]);
+        setY(end[1]);
+    }
 
-	@Override
-	public void deplacement(int[] end) {
-		setX(end[0]);
-		setY(end[1]);
-	}
+    /**
+     * Vérifie si un déplacement est valide pour cette pièce.
+     *
+     * @param end    Les coordonnées de la case d'arrivée
+     * @param board  L'échiquier sur lequel la pièce se déplace
+     * @return True si le déplacement est valide, sinon False
+     */
+    @Override
+    public boolean isValidDeplacement(int[] end, ChessBoard board) {
+        for (int[] move : getPossibleMoves(board)) {
+            if (move[0] == end[0] && move[1] == end[1]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public boolean isValidDeplacement(int[] end, ChessBoard board) {
-		for (int[] move : getPossibleMoves(board)) {
-			if (move[0] == end[0] && move[1] == end[1]) {
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * Vérifie si une capture est valide pour cette pièce.
+     *
+     * @param end    Les coordonnées de la case cible pour la capture
+     * @param board  L'échiquier sur lequel la capture peut se produire
+     * @return True si la capture est valide, sinon False
+     */
+    @Override
+    public boolean isValidCatch(int[] end, ChessBoard board) {
+        for (int[] capture : getPossibleCaptures(board)) {
+            if (capture[0] == end[0] && capture[1] == end[1]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public boolean isValidCatch(int[] end, ChessBoard board) {
-		for (int[] capture : getPossibleCaptures(board)) {
-			if (capture[0] == end[0] && capture[1] == end[1]) {
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * Récupère la liste des déplacements possibles pour cette pièce.
+     *
+     * @param board  L'échiquier sur lequel la pièce se déplace
+     * @return La liste des déplacements possibles sous forme de coordonnées [x, y]
+     */
+    @Override
+    public List<int[]> getPossibleMoves(ChessBoard board) {
+        List<int[]> moves = new ArrayList<>();
+        int x = getX();
+        int y = getY();
 
-	@Override
-	public List<int[]> getPossibleMoves(ChessBoard board) {
-		List<int[]> moves = new ArrayList<>();
-		int x = getX();
-		int y = getY();
+        // Parcours des déplacements possibles
+        for (int[] move : deplacementsPossibles) {
+            if (move == null) break; // Fin de la liste des déplacements possibles
+            int dx = move[0], dy = move[1];
+            int nx = x + dx, ny = y + dy;
 
-		// Parcours des déplacements possibles
-		for (int[] move : deplacementsPossibles) {
-			if (move == null)
-				break;
-			int dx = move[0], dy = move[1];
-			int nx = x + dx, ny = y + dy;
+            // Vérification des déplacements longs
+            while (deplacementLong && nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) {
+                Piece obstacle = board.getPieceAt(nx, ny);
 
-			// Si la pièce se déplace de manière longue, on vérifie plusieurs cases
-			while (deplacementLong && nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8) {
-				Piece obstacle = board.getPieceAt(nx, ny);
+                // Si la case est libre ou si la pièce peut sauter, on ajoute le déplacement
+                if (obstacle == null || peutSauter) {
+                    moves.add(new int[] { nx, ny });
+                }
 
-				if (obstacle == null) { // Pas d'obstacles, on avance
-					moves.add(new int[] { nx, ny });
-				}
+                // Si un obstacle est rencontré et que la pièce ne peut pas sauter, on arrête
+                if (obstacle != null && !peutSauter) {
+                    break;
+                }
 
-				if (!peutSauter && obstacle != null) { // Un obstacle mais on ne peut pas sauter, donc on est bloqué
-					break;
-				}
+                // Avancer à la case suivante dans la même direction
+                nx += dx;
+                ny += dy;
+            }
 
-				// Avancer sur la case suivante
-				nx += dx;
-				ny += dy;
-			}
+            // Ajout du déplacement si la pièce ne fait pas de déplacement long
+            if (!deplacementLong && nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8 && board.getPieceAt(nx, ny) == null) {
+                moves.add(new int[] { nx, ny });
+            }
+        }
 
-			// Si la pièce ne se déplace pas de manière longue, on ajoute le déplacement une
-			// seule fois
-			if (!deplacementLong && nx >= 1 && nx <= 8 && ny >= 1 && ny <= 8 && board.getPieceAt(nx, ny) == null) {
-				moves.add(new int[] { nx, ny });
-			}
-		}
-		return moves;
-	}
+        return moves;
+    }
 
-	@Override
+    /**
+     * Récupère la liste des captures possibles pour cette pièce.
+     *
+     * @param board  L'échiquier sur lequel la pièce peut capturer
+     * @return La liste des captures possibles sous forme de coordonnées [x, y]
+     */
+    @Override
 	public List<int[]> getPossibleCaptures(ChessBoard board) {
 		List<int[]> captures = new ArrayList<>();
 		int x = getX();
@@ -146,79 +196,69 @@ public class PiecePersonnalisee extends Piece {
 		return captures;
 	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"PiecePersonnalisee{name='%s', position=(%d,%d), player=%d, peutSauter=%b, deplacementLong=%b, unicode='%s'}",
-				name, getX(), getY(), getPlayer(), peutSauter, deplacementLong,
-				new String(Character.toChars(getAffichage())));
-	}
+    /**
+     * Clone cette pièce personnalisée en créant une nouvelle instance avec les mêmes attributs.
+     *
+     * @return Une nouvelle instance de PiecePersonnalisee avec les mêmes valeurs
+     */
+    @Override
+    public PiecePersonnalisee clone() {
+        return new PiecePersonnalisee(
+            getX(), getY(), getPlayer(), getPathImage(), getDeplacementsPossibles(),
+            getCapturesPossibles(), getAffichage2(), getName(), isPeutSauter(), isDeplacementLong()
+        );
+    }
 
-	@Override
-	public int getAffichage() {
-		return affichage[getPlayer()];
-	}
+    // Getters et setters pour les propriétés de la pièce personnalisée
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public List<int[]> getDeplacementsPossibles() {
+        return deplacementsPossibles;
+    }
 
-	public List<int[]> getDeplacementsPossibles() {
-		return deplacementsPossibles;
-	}
+    public void setDeplacementsPossibles(List<int[]> deplacementsPossibles) {
+        this.deplacementsPossibles = deplacementsPossibles;
+    }
 
-	public void setDeplacementsPossibles(List<int[]> deplacementsPossibles) {
-		this.deplacementsPossibles = deplacementsPossibles;
-	}
+    public List<int[]> getCapturesPossibles() {
+        return capturesPossibles;
+    }
 
-	public List<int[]> getCapturesPossibles() {
-		return capturesPossibles;
-	}
+    public void setCapturesPossibles(List<int[]> capturesPossibles) {
+        this.capturesPossibles = capturesPossibles;
+    }
 
-	public void setCapturesPossibles(List<int[]> capturesPossibles) {
-		this.capturesPossibles = capturesPossibles;
-	}
+    public boolean isPeutSauter() {
+        return peutSauter;
+    }
 
-	public boolean isPeutSauter() {
-		return peutSauter;
-	}
+    public void setPeutSauter(boolean peutSauter) {
+        this.peutSauter = peutSauter;
+    }
 
-	public void setPeutSauter(boolean peutSauter) {
-		this.peutSauter = peutSauter;
-	}
+    public boolean isDeplacementLong() {
+        return deplacementLong;
+    }
 
-	public boolean isDeplacementLong() {
-		return deplacementLong;
-	}
+    public void setDeplacementLong(boolean deplacementLong) {
+        this.deplacementLong = deplacementLong;
+    }
 
-	public void setDeplacementLong(boolean deplacementLong) {
-		this.deplacementLong = deplacementLong;
-	}
+    public int[] getAffichage2() {
+        return affichage;
+    }
 
-	public void setAffichage(int[] affichage) {
-		this.affichage = affichage;
-	}
+    public void setAffichage(int[] affichage) {
+        this.affichage = affichage;
+    }
 
-	public int[] getAffichage2() {
-		return affichage;
-	}
-
-	public PiecePersonnalisee clone() {
-		return new PiecePersonnalisee(getX(), getY(), getPlayer(), getPathImage(), getDeplacementsPossibles(), // On ne
-																												// copie
-																												// pas
-																												// les
-																												// listes
-																												// en
-																												// profondeur
-																												// car
-																												// pas
-																												// utile
-																												// ici
-				getCapturesPossibles(), getAffichage2(), getName(), isPeutSauter(), isDeplacementLong());
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Override
+    public int getAffichage() {
+    	return affichage[getPlayer()];
+    }
 }
+
+
+

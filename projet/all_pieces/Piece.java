@@ -1,15 +1,20 @@
 package projet.all_pieces;
 
 import java.util.List;
-
 import projet.models.ChessBoard;
 
+/**
+ * Classe abstraite représentant une pièce d'échecs.
+ * Chaque type de pièce (Tour, Cavalier, etc.) devra hériter de cette classe
+ * et implémenter ses méthodes abstraites selon ses propres règles de mouvement.
+ */
 public abstract class Piece {
-	private int x;
-	private int y;
-	private int player;
-	private String pathImage;
+	private int x; // Coordonnée x (colonne) de la pièce sur l'échiquier (1 à 8)
+	private int y; // Coordonnée y (ligne) de la pièce sur l'échiquier (1 à 8)
+	private int player; // Numéro du joueur (0 ou 1)
+	private String pathImage; // Chemin vers l'image représentant la pièce
 
+	// Getters / Setters de l'image
 	public String getPathImage() {
 		return pathImage;
 	}
@@ -18,6 +23,14 @@ public abstract class Piece {
 		this.pathImage = pathImage;
 	}
 
+	/**
+	 * Constructeur de pièce avec vérification de position valide.
+	 *
+	 * @param x         Coordonnée x de la pièce (1 à 8)
+	 * @param y         Coordonnée y de la pièce (1 à 8)
+	 * @param player    Joueur propriétaire de la pièce (0 ou 1)
+	 * @param pathImage Chemin vers l'image de la pièce
+	 */
 	public Piece(int x, int y, int player, String pathImage) throws IllegalArgumentException {
 		if (!isValidPosition(x, y)) {
 			throw new IllegalArgumentException("Position invalide sur l'échiquier");
@@ -28,25 +41,68 @@ public abstract class Piece {
 		this.pathImage = pathImage;
 	}
 
+	/**
+	 * Déplace la pièce aux coordonnées données (sans vérifier la validité).
+	 * 
+	 * @param end Coordonnées cibles [x, y]
+	 */
 	public abstract void deplacement(int[] end);
 
-	public abstract boolean isValidDeplacement(int[] end, ChessBoard Echec); // Regarde si le déplacement de la pièce
-																				// est possible sur l'echequier donné
+	/**
+	 * Vérifie si un déplacement est valide selon les règles de la pièce.
+	 *
+	 * @param end   Coordonnées cibles [x, y]
+	 * @param Echec L'échiquier actuel
+	 * @return true si le déplacement est autorisé
+	 */
+	public abstract boolean isValidDeplacement(int[] end, ChessBoard Echec);
 
-	public abstract boolean isValidCatch(int[] end, ChessBoard Echec); // Regarde si la capture de la pièce est possible
-																		// sur l'echequier donné
+	/**
+	 * Vérifie si une capture est valide selon les règles de la pièce.
+	 *
+	 * @param end   Coordonnées de la cible à capturer
+	 * @param Echec L'échiquier actuel
+	 * @return true si la capture est autorisée
+	 */
+	public abstract boolean isValidCatch(int[] end, ChessBoard Echec);
 
-	public abstract List<int[]> getPossibleMoves(ChessBoard board); // Donne une liste des déplacements de la pièce
-																	// possible sur l'echequier donné
+	/**
+	 * Retourne la liste des déplacements possibles pour la pièce.
+	 *
+	 * @param board L'échiquier sur lequel chercher
+	 * @return Liste de coordonnées [x, y] valides
+	 */
+	public abstract List<int[]> getPossibleMoves(ChessBoard board);
 
-	public abstract List<int[]> getPossibleCaptures(ChessBoard board);// Donne une liste des captures de la pièce
-																		// possible sur l'echequier donné
+	/**
+	 * Retourne la liste des captures possibles pour la pièce.
+	 *
+	 * @param board L'échiquier sur lequel chercher
+	 * @return Liste de coordonnées [x, y] des pièces adverses pouvant être capturées
+	 */
+	public abstract List<int[]> getPossibleCaptures(ChessBoard board);
 
+	/**
+	 * Utilisé pour afficher la pièce dans une interface ou sur la console.
+	 *
+	 * @return Code entier représentant la pièce (peut être lié à un symbole ou couleur)
+	 */
 	public abstract int getAffichage();
 
-	public abstract Piece clone(); // Renvoie un clone de la pièce
+	/**
+	 * Crée une copie de la pièce avec les mêmes attributs.
+	 *
+	 * @return Une nouvelle instance de la même pièce
+	 */
+	public abstract Piece clone();
 
-	// Transforme des Coordonnées echec (ex : A2) en un tableau de int {x,y}
+	/**
+	 * Convertit une position au format échiquier (ex: "A2") en coordonnées [x, y].
+	 *
+	 * @param coordonnees Chaîne de caractères représentant une case (ex: "D4")
+	 * @return Tableau contenant les coordonnées [x, y]
+	 * @throws IllegalArgumentException si le format est incorrect
+	 */
 	public static int[] parseCoordonnees(String coordonnees) throws IllegalArgumentException {
 		if (coordonnees == null || coordonnees.length() != 2) {
 			throw new IllegalArgumentException("Coordonnées invalides : " + coordonnees);
@@ -71,10 +127,12 @@ public abstract class Piece {
 		return new int[] { x - 'A' + 1, y };
 	}
 
+	// Vérifie si les coordonnées sont bien dans les limites de l'échiquier
 	private boolean isValidPosition(int x, int y) {
 		return x >= 1 && x <= 8 && y >= 1 && y <= 8;
 	}
 
+	// Getters / Setters de position
 	public int getX() {
 		return x;
 	}
@@ -97,6 +155,7 @@ public abstract class Piece {
 		this.y = y;
 	}
 
+	// Getter / Setter du joueur
 	public int getPlayer() {
 		return player;
 	}
