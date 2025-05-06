@@ -1,0 +1,17 @@
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/utils/Accueil.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Fou.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/utils/Affichage.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Pion.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/utils/Chess.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/utils/ChessGUI.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/utils/ModeJeu.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/utils/MinMax.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Piece.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Dame.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Roi.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Tour.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/models/ChessBoard.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/PiecePersonnalisee.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/all_pieces/Cavalier.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/models/JSONReader.java
+/home/agrougrou/eclipse-workspace/Echec/src/main/java/projet/main/Main.java

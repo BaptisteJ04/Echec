@@ -1,0 +1,27 @@
+# ========== JAVA / MAVEN ==========
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ========== IDEs ==========
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# ========== Système ==========
+.DS_Store
+Thumbs.db
+
+# ========== Logs & autres ==========
+*.log
+*.tmp

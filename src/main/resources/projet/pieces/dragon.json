@@ -1,0 +1,21 @@
+{
+    "name": "Dragon",
+    "unicodeWhite": "🟩",
+    "unicodeBlack": "🟥",
+    "imageWhite": "projet/white_dragon.png",
+    "imageBlack": "projet/black_dragon.png",
+    "movesWhite": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "movesBlack": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "capturesWhite": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "capturesBlack": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "deplacementLong": true,
+    "peutSauter": true
+}
