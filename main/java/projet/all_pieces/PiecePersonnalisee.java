@@ -111,10 +111,10 @@ public class PiecePersonnalisee extends Piece {
                 Piece obstacle = board.getPieceAt(nx, ny);
 
                 // Si la case est libre ou si la pièce peut sauter, on ajoute le déplacement
-                if (obstacle == null || peutSauter) {
+                if (obstacle == null) {
                     moves.add(new int[] { nx, ny });
                 }
-
+                
                 // Si un obstacle est rencontré et que la pièce ne peut pas sauter, on arrête
                 if (obstacle != null && !peutSauter) {
                     break;
