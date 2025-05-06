@@ -12,6 +12,6 @@
     ],
     "capturesWhite": [],
     "capturesBlack": [],
-    "deplacementLong": false,
+    "deplacementLong": true,
     "peutSauter": false
 }

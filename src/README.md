@@ -1,6 +1,6 @@
 # ♟️ Jeu d'Échecs Personnalisé en Java
 
-Bienvenue dans un projet de jeu d’échecs en Java avec une **interface graphique**, un **mode terminal** et la possibilité d'ajouter des **pièces personnalisées** via des fichiers JSON.  
+Bienvenue dans un projet de jeu d’échecs en Java avec une **interface graphique**, un **mode terminal** et la possibilité d'ajouter des **pièces personnalisées** via des fichiers JSON. 
 Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
 
 ## 🧑‍💻 Auteur
@@ -29,48 +29,44 @@ Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
 
 ---
 
-## ▶️ Lancer le projet
+## ▶️ Lancer le projet avec Maven
 
 ### ✅ Prérequis
 - Java 8 ou plus
-- [org.json](https://mvnrepository.com/artifact/org.json/json) (pour lire les fichiers JSON)
+- [Maven](https://maven.apache.org/) installé (assure-toi d’avoir la commande `mvn` disponible dans ton terminal)
 
-### 📦 Compilation (en ligne de commande)
+---
 
-```bash
-  javac -d bin -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar src/projet/**/*.java src/tests/**/*.java
-```
+### 📦 Compilation & Tests avec Maven
 
-### 🚀 Exécuter le projet principal (Main.java)
+Le projet utilise **Maven** pour gérer les dépendances (comme `org.json` et JUnit) et simplifier la compilation, l’exécution et le packaging.
 
-```bash
-  java -cp bin projet.main.Main
-```
-
-### 🧪 Exécuter les tests JUnit
+#### 🔨 Compiler le projet :
 
 ```bash
-  java -cp bin:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore tests.allPieces.YourTestClass
+mvn compile
 ```
 
-Ou pour tout lancer (en créant un AllTests.java qui agrège tous les tests) :
+#### 🧪 Lancer les tests unitaires :
 
 ```bash
-java -cp bin:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore tests.AllTests
+mvn test
 ```
 
-### 📦 Pour packager en .jar
+#### 📦 Générer le .jar exécutable :
 
-  Depuis le répertoire principal :
 ```bash
-  jar cfe monEchecs.jar projet.main.Main -C bin .
+mvn package
 ```
 
-  Pour lancer ensuite :
+Le fichier .jar sera généré dans le dossier target/. 
+Tu peux ensuite le lancer avec :
+
+#### ▶️ Lancer l'archive executable
+
 ```bash
-  java -jar monEchecs.jar
+java -jar target/echecs-1.0.jar
 ```
-
 ---
 
 ## 🎮 Choisissez votre mode :
@@ -92,36 +88,28 @@ Tout les modes peuvent être joués en 1 ou 2 joueurs
 Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 
 ```bash
-./src/pieces/
+./src/main/resources/projet/pieces
 ```
 
 ### ✏️ Exemple de JSON (Dame.json)
 
 ```json
 {
-  "name": "Dame",
-  "unicodeWhite": "♕",
-  "unicodeBlack": "♛",
-  "imageWhite": "./src/Images/white_queen.png",
-  "imageBlack": "./src/Images/black_queen.png",
-  "movesWhite": [
-    [1, 0], [-1, 0], [0, 1], [0, -1],
-    [1, 1], [-1, -1], [1, -1], [-1, 1]
-  ],
-  "movesBlack": [
-    [1, 0], [-1, 0], [0, 1], [0, -1],
-    [1, 1], [-1, -1], [1, -1], [-1, 1]
-  ],
-  "capturesWhite": [
-    [1, 0], [-1, 0], [0, 1], [0, -1],
-    [1, 1], [-1, -1], [1, -1], [-1, 1]
-  ],
-  "capturesBlack": [
-    [1, 0], [-1, 0], [0, 1], [0, -1],
-    [1, 1], [-1, -1], [1, -1], [-1, 1]
-  ],
-  "deplacementLong": true,
-  "peutSauter": false
+    "name": "Sentinelle",
+    "unicodeWhite": "🛡️",
+    "unicodeBlack": "🛡️",
+    "imageWhite": "projet/white_guard.png",
+    "imageBlack": "projet/black_guard.png",
+    "movesWhite": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "movesBlack": [
+        [1, 0], [-1, 0], [0, 1], [0, -1]
+    ],
+    "capturesWhite": [],
+    "capturesBlack": [],
+    "deplacementLong": true,
+    "peutSauter": false
 }
 ```
 
@@ -129,30 +117,24 @@ Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 
 Le projet est couvert par des tests unitaires JUnit :
 
-  -  Validation des déplacements
+  - Validation des déplacements
 
   - Détection des coups légaux en cas d’échec
 
   - Vérification de l’évaluation des plateaux de jeu
 
-  - Préférence stratégique (par exemple : capturer une Dame plutôt qu'un Pion, éviter les échanges désavantageux, privilégier un mat)
+Il n'y a pour l'instant pas de tests pour l'IA
 
-### Pour exécuter les tests :
-
-```bash
-javac -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar -d bin src/projet/**/*.java src/tests/**/*.java
-java -cp .:bin:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore projet.tests.AllTests
-```
 
 ## 🤖 Intelligence Artificielle (IA)
 
 Une IA basée sur l'algorithme MinMax est intégrée :
 
-  - Choix du meilleur coup possible selon une évaluation heuristique du plateau
+  - Choix du meilleur coup possible selon une évaluation personnalisée du plateau
 
   - Prise en compte des captures, échecs, mat et menaces
 
-Jouez contre l’ordinateur ou laissez l'IA s'affronter elle-même !
+Jouez contre l’ordinateur si vous voulez vous tester ! 
 
 
 ---
