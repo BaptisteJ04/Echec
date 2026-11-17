@@ -1,106 +1,106 @@
-# ♟️ Jeu d'Échecs Personnalisé en Java
+# ♟️ Custom Chess Game in Java
 
-![Java](https://img.shields.io/badge/Java-8%2B-orange) ![Maven](https://img.shields.io/badge/build-Maven-blue) ![Licence MIT](https://img.shields.io/badge/licence-MIT-green)
+![Java](https://img.shields.io/badge/Java-8%2B-orange) ![Maven](https://img.shields.io/badge/build-Maven-blue) ![MIT License](https://img.shields.io/badge/license-MIT-green)
 
-Projet réalisé dans le cadre de mes cours de Java.
+A Java chess game with a **graphical interface**, a **terminal mode**, and support for **custom pieces** defined in JSON files.
+Play with the classic rules or invent your own pieces!
 
-Bienvenue dans un projet de jeu d’échecs en Java avec une **interface graphique**, un **mode terminal** et la possibilité d'ajouter des **pièces personnalisées** via des fichiers JSON. 
-Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
+Built as part of my Java coursework.
 
-## 🧑‍💻 Auteur
+## 🧑‍💻 Author
 
   - Baptiste Joubert
 
 ---
 
-## 🧠 Fonctionnalités
+## 🧠 Features
 
-  - ✅ Jeu d’échecs en mode console ou mode graphique (Swing GUI)
+  - ✅ Chess in console mode or graphical mode (Swing GUI)
 
-  -  ♟️ Système de pièces personnalisées via des fichiers JSON
+  - ♟️ Custom piece system driven by JSON files
 
-  - 👑 Pièces de base : Roi, Reine, Cavalier, Tour, Fou, Pion
+  - 👑 Standard pieces: King, Queen, Knight, Rook, Bishop, Pawn
 
-  -  🎯 Prise en compte de la promotion, du tour par tour, des échecs
+  - 🎯 Support for promotion, turn-based play and check
 
-  - 🚨 Bouton de forfait, suivi du score en GUI
-  
-  -  🔁 Relancer une partie après un forfait en mode personnalisé GUI
+  - 🚨 Resign button and score tracking in the GUI
 
-  - 🧠 Intelligence Artificielle basée sur MinMax pour jouer automatiquement
+  - 🔁 Restart a game after a resignation in custom GUI mode
 
-  - 🧪 Tests unitaires complets avec JUnit pour assurer la stabilité du projet
+  - 🧠 MinMax-based AI that can play automatically
+
+  - 🧪 Thorough JUnit unit tests to keep the project stable
 
 ---
 
-## ▶️ Lancer le projet avec Maven
+## ▶️ Running the project with Maven
 
 ```bash
-git clone <url-du-repo>
-cd <nom-du-repo>
+git clone <repo-url>
+cd <repo-name>
 ```
 
-### ✅ Prérequis
-- Java 8 ou plus
-- [Maven](https://maven.apache.org/) installé (assure-toi d’avoir la commande `mvn` disponible dans ton terminal)
+### ✅ Prerequisites
+- Java 8 or later
+- [Maven](https://maven.apache.org/) installed (make sure the `mvn` command is available in your terminal)
 
 ---
 
-### 📦 Compilation & Tests avec Maven
+### 📦 Building & testing with Maven
 
-Le projet utilise **Maven** pour gérer les dépendances (comme `org.json` et JUnit) et simplifier la compilation, l’exécution et le packaging.
+The project uses **Maven** to manage dependencies (`org.json` and JUnit) and to simplify compiling, running and packaging.
 
-#### 🔨 Compiler le projet :
+#### 🔨 Compile the project:
 
 ```bash
 mvn compile
 ```
 
-#### 🧪 Lancer les tests unitaires :
+#### 🧪 Run the unit tests:
 
 ```bash
 mvn test
 ```
 
-#### 📦 Générer le .jar exécutable :
+#### 📦 Build the executable .jar:
 
 ```bash
 mvn package
 ```
 
-Le fichier .jar sera généré dans le dossier target/. 
-Tu peux ensuite le lancer avec :
+The .jar file is generated in the `target/` folder.
+You can then run it with:
 
-#### ▶️ Lancer l'archive executable
+#### ▶️ Run the executable archive
 
 ```bash
 java -jar target/echecs-1.0.jar
 ```
 ---
 
-## 🎮 Choisissez votre mode :
+## 🎮 Choose your mode
 
-  -  Mode Classique terminal (pièces de base)
+  - Classic terminal mode (standard pieces)
 
-  -  Mode Personnalisé terminal (ajoutez vos pièces)
+  - Custom terminal mode (add your own pieces)
 
-  -  Mode Classique GUI
+  - Classic GUI mode
 
-  -  Mode Personnalisé GUI
+  - Custom GUI mode
 
-Tout les modes peuvent être joués en 1 ou 2 joueurs
+All modes can be played with 1 or 2 players.
 
 ---
 
-## 🔧 Ajouter une pièce personnalisée
+## 🔧 Adding a custom piece
 
-Les pièces personnalisées sont des fichiers .json placés dans le dossier :
+Custom pieces are `.json` files placed in the folder:
 
 ```bash
 ./src/main/resources/projet/pieces
 ```
 
-### ✏️ Exemple de JSON (sentinelle.json)
+### ✏️ JSON example (sentinelle.json)
 
 ```json
 {
@@ -122,55 +122,55 @@ Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 }
 ```
 
-## 🧪 Tests unitaires
+## 🧪 Unit tests
 
-Le projet est couvert par des tests unitaires JUnit :
+The project is covered by JUnit unit tests:
 
-  - Validation des déplacements
+  - Move validation
 
-  - Détection des coups légaux en cas d’échec
+  - Detection of legal moves when in check
 
-  - Vérification de l’évaluation des plateaux de jeu
+  - Board evaluation checks
 
-Il n'y a pour l'instant pas de tests pour l'IA
+There are no tests for the AI yet.
 
 
-## 🤖 Intelligence Artificielle (IA)
+## 🤖 Artificial Intelligence (AI)
 
-Une IA basée sur l'algorithme MinMax est intégrée :
+A MinMax-based AI is built in:
 
-  - Choix du meilleur coup possible selon une évaluation personnalisée du plateau
+  - Picks the best possible move according to a custom board evaluation
 
-  - Prise en compte des captures, échecs, mat et menaces
+  - Takes captures, checks, checkmate and threats into account
 
-Jouez contre l’ordinateur si vous voulez vous tester ! 
+Play against the computer if you want a challenge!
 
 
 ---
 
-## 📦 Librairies utilisées
+## 📦 Libraries used
 
-✅ Seule dépendance externe requise, pour le parsing JSON, j'ai utilisé `org.json`
-
----
-
-## 🎮 Aperçu du jeu
-
-Voici un aperçu du mode graphique (GUI) avec les pièces affichées sur l’échiquier :
-
-![Aperçu du jeu d'échecs](./echec_perso.png)
-
-
-## 🌈 Idées de pièces personnalisées
-
-    🐉 Un dragon qui vole sur les cases horizontales et verticales
-
-    👣 Un fantôme qui peut sauter par-dessus toutes les pièces
-
-Tu es libre de créer tes propres règles via les vecteurs de mouvements dans le JSON !
+✅ The only external dependency is `org.json`, used for JSON parsing.
 
 ---
 
-## 📄 Licence
+## 🎮 Game preview
 
-Projet distribué sous licence [MIT](./LICENSE) © Baptiste Joubert.
+Here is the graphical mode (GUI) with the pieces displayed on the board:
+
+![Chess game preview](./echec_perso.png)
+
+
+## 🌈 Custom piece ideas
+
+    🐉 A dragon that flies along horizontal and vertical squares
+
+    👣 A ghost that can jump over all pieces
+
+You are free to create your own rules through the movement vectors in the JSON!
+
+---
+
+## 📄 License
+
+Distributed under the [MIT](./LICENSE) license © Baptiste Joubert.
