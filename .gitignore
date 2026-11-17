@@ -25,3 +25,6 @@ Thumbs.db
 # ========== Logs & autres ==========
 *.log
 *.tmp
+
+# Maven shade
+dependency-reduced-pom.xml

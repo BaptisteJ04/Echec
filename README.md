@@ -1,5 +1,9 @@
 # ♟️ Jeu d'Échecs Personnalisé en Java
 
+![Java](https://img.shields.io/badge/Java-8%2B-orange) ![Maven](https://img.shields.io/badge/build-Maven-blue) ![Licence MIT](https://img.shields.io/badge/licence-MIT-green)
+
+Projet réalisé dans le cadre de mes cours de Java.
+
 Bienvenue dans un projet de jeu d’échecs en Java avec une **interface graphique**, un **mode terminal** et la possibilité d'ajouter des **pièces personnalisées** via des fichiers JSON. 
 Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
 
@@ -30,6 +34,11 @@ Vous pouvez jouer avec les règles classiques ou inventer vos propres pièces !
 ---
 
 ## ▶️ Lancer le projet avec Maven
+
+```bash
+git clone <url-du-repo>
+cd <nom-du-repo>
+```
 
 ### ✅ Prérequis
 - Java 8 ou plus
@@ -91,7 +100,7 @@ Les pièces personnalisées sont des fichiers .json placés dans le dossier :
 ./src/main/resources/projet/pieces
 ```
 
-### ✏️ Exemple de JSON (Dame.json)
+### ✏️ Exemple de JSON (sentinelle.json)
 
 ```json
 {
@@ -159,3 +168,9 @@ Voici un aperçu du mode graphique (GUI) avec les pièces affichées sur l’éc
     👣 Un fantôme qui peut sauter par-dessus toutes les pièces
 
 Tu es libre de créer tes propres règles via les vecteurs de mouvements dans le JSON !
+
+---
+
+## 📄 Licence
+
+Projet distribué sous licence [MIT](./LICENSE) © Baptiste Joubert.
